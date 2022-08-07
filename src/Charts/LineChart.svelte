@@ -9,6 +9,7 @@
 
     export let data = [];
 
+    let closest;
 
 </script>
 
@@ -22,6 +23,19 @@
                 <path class='data' {d}></path>
             </Pancake.SvgLine>
         </Pancake.Svg>
+
+        {#if closest}
+        <Pancake.Point x={closest.x} y={closest.y}>
+            <span class="annotation-point"></span>
+            <div class="annotation" style="transform: translate(-{100 * ((closest.x - x1) / (x2 - x1))}%,0)">
+                <strong>{closest.y}</strong>
+                <span>{closest.x}: {closest.y}</span>
+            </div>
+        </Pancake.Point>
+        {/if}
+
+        <Pancake.Quadtree data={data} bind:closest/>
+
     </Pancake.Chart>
 </div>
 
