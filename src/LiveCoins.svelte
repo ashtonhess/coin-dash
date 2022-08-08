@@ -111,7 +111,8 @@
         if (eth_data_dict.x<eth_x1) eth_x1 = eth_data_dict.x;
         if (eth_data_dict.y>eth_y2) eth_y2 = eth_data_dict.y;
         if (eth_data_dict.y<eth_y1) eth_y1 = eth_data_dict.y;
-        if (eth_x2-eth_x1 > 60000) eth_x1 = eth_x2-60000
+        // if (eth_x2-eth_x1 > 60000) eth_x1 = eth_x2-60000
+        if (eth_x2-eth_x1>86400000) eth_x1 = eth_x2-86400000
         eth_alldata.push(eth_data_dict);
         eth_alldata=[...eth_alldata.filter(data => data.x > eth_x1)]
         console.log(eth_alldata[eth_alldata.length-1]);
