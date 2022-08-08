@@ -2,6 +2,8 @@
 
     import * as Pancake from '@sveltejs/pancake'
 
+    export let header = '';
+
     export let x1=+Infinity;
     export let x2=-Infinity;
     export let y1=+Infinity;
@@ -14,6 +16,7 @@
 </script>
 
 <div class='chart'>
+    <h3 class='header'>{header}</h3>
     <Pancake.Chart {x1} {x2} {y1} {y2}>
         <Pancake.Grid horizontal count = {5} let:value>
             <div class='grid-line horizontal'><span>{value}</span></div>
@@ -44,9 +47,15 @@
 
 
 <style>
+    .header{
+        /* left: -3em; */
+        /* position: relative; */
+        /* display: block; */
+    }
+
     .chart{
-        height: 200px;
-        width: 40%;
+        height: 250px;
+        width: 90%;
         padding: 2em 2em 2em 2em;
         margin: 0 0 36px 0;
         
