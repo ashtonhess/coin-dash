@@ -18,6 +18,9 @@
         <Pancake.Grid horizontal count = {5} let:value>
             <div class='grid-line horizontal'><span>{value}</span></div>
         </Pancake.Grid>
+        <Pancake.Grid vertical count = {5} let:value>
+            <span class = 'x-label'>{String(new Date(value).toLocaleTimeString())}</span>
+        </Pancake.Grid>
         <Pancake.Svg>
             <Pancake.SvgLine data={data} let:d>
                 <path class='data' {d}></path>
