@@ -35,6 +35,7 @@
     finnhub_socket.onopen = function (){
         finnhub_socket.send('{"type":"subscribe","symbol":"SPY"}');
         finnhub_socket.send('{"type":"subscribe","symbol":"NDAQ"}');
+        finnhub_socket.send('{"type":"subscribe","symbol":"TSLA"}');
 
         // finnhub_socket.send('{"type":"subscribe","symbol":"AAPL"}');
         // finnhub_socket.send('{"type":"subscribe","symbol":"ORCL"}');
@@ -58,6 +59,13 @@
     let ndaq_y1 = +Infinity;
     let ndaq_y2 = -Infinity;
     let ndaq_alldata = [];
+
+    let tsla_ticker = 'TSLA';
+    let tsla_x1 = +Infinity;
+    let tsla_x2 = -Infinity;
+    let tsla_y1 = +Infinity;
+    let tsla_y2 = -Infinity;
+    let tsla_alldata = [];
 
     finnhub_socket.onmessage = function (event){
         var finnhub_data = JSON.parse(event.data);
@@ -121,6 +129,33 @@
                 
                 
             }
+            if(element.s == 'TSLA'){
+                if(tsla_alldata.length>0){
+                    if(element.t>tsla_alldata[tsla_alldata.length-1].x){
+                        let tsla_data_dict = {'x':element.t, 'y':element.p}
+                        if (tsla_data_dict.x>tsla_x2) tsla_x2 = tsla_data_dict.x;
+                        if (tsla_data_dict.x<tsla_x1) tsla_x1 = tsla_data_dict.x;
+                        if (tsla_data_dict.y>tsla_y2) tsla_y2 = tsla_data_dict.y;
+                        if (tsla_data_dict.y<tsla_y1) tsla_y1 = tsla_data_dict.y;
+                        // if (btc_x2-btc_x1>60000) btc_x1 = btc_x2-60000
+                        if (tsla_x2-tsla_x1>86400000) tsla_x1 = tsla_x2-86400000
+                        tsla_alldata.push(tsla_data_dict);
+                        tsla_alldata=[...tsla_alldata.filter(data => data.x > tsla_x1)]
+                    }
+                }else{
+                    let tsla_data_dict = {'x':element.t, 'y':element.p}
+                    if (tsla_data_dict.x>tsla_x2) tsla_x2 = tsla_data_dict.x;
+                    if (tsla_data_dict.x<tsla_x1) tsla_x1 = tsla_data_dict.x;
+                    if (tsla_data_dict.y>tsla_y2) tsla_y2 = tsla_data_dict.y;
+                    if (tsla_data_dict.y<tsla_y1) tsla_y1 = tsla_data_dict.y;
+                    // if (btc_x2-btc_x1>60000) btc_x1 = btc_x2-60000
+                    if (tsla_x2-tsla_x1>86400000) tsla_x1 = tsla_x2-86400000
+                    tsla_alldata.push(tsla_data_dict);
+                    tsla_alldata=[...tsla_alldata.filter(data => data.x > tsla_x1)]
+                }
+                
+                
+            }
             
         });
     }
@@ -143,19 +178,20 @@
 </script>
 
 <!-- <h1>Test2Main</h1> -->
-<div class='chart-grid oneX2'>
+<div class='chart-grid oneX3'>
     <LineChart bind:data={spy_alldata} bind:x1={spy_x1} bind:x2={spy_x2} bind:y1={spy_y1} bind:y2={spy_y2} bind:header={spy_ticker}/>
     <LineChart bind:data={ndaq_alldata} bind:x1={ndaq_x1} bind:x2={ndaq_x2} bind:y1={ndaq_y1} bind:y2={ndaq_y2} bind:header={ndaq_ticker}/>
-    
+    <LineChart bind:data={tsla_alldata} bind:x1={tsla_x1} bind:x2={tsla_x2} bind:y1={tsla_y1} bind:y2={tsla_y2} bind:header={tsla_ticker}/>
+
 </div>
 
 <style>
-.chart-grid.oneX2 { 
+.chart-grid.oneX3 { 
         display: grid; 
         grid-template-columns: repeat(1, 1fr); 
-        grid-template-rows: repeat(2, 1fr); 
+        grid-template-rows: repeat(3, 1fr); 
         grid-column-gap: 5em;
-        grid-row-gap: 10px; 
+        grid-row-gap: 80px; 
         height:100%;
     }
 </style>

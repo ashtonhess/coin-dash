@@ -44,6 +44,7 @@
 		/* margin: -10px -10px -10px -10px;
 		padding: -10px -10px -10px -10px; */
 	}
+	/* disables scrollbar on chrome, safari, opera browsers */
 	body::-webkit-scrollbar{
 		display: none;
 	}
