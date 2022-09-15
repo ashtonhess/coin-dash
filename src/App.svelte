@@ -39,9 +39,13 @@
 	.body{
 		background-color: black;
 		width: 100vw;
-		height: 100vw;
+		height: 100vw;;
+		overflow: hidden;
 		/* margin: -10px -10px -10px -10px;
 		padding: -10px -10px -10px -10px; */
+	}
+	body::-webkit-scrollbar{
+		display: none;
 	}
 	/* body{
 		background-color: black;
