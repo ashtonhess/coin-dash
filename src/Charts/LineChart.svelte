@@ -53,13 +53,16 @@
         /* left: -3em; */
         /* position: relative; */
         /* display: block; */
+        font-size:xx-large;
+        font-weight: bolder;
+        color:rgb(0, 0, 0)
     }
 
     .chart{
         height: 90%;
         width: 90%;
-        padding: 2em 2em 2em 2em;
-        margin: 0 0 36px 0;
+        padding: 0em 2em 2em 2em;
+        margin: 0 0 30px 0;
         padding-left: 1em;
         /* padding-right: 4em; */
     }
@@ -79,28 +82,27 @@
         bottom: 2px;
         font-family: sans-serif;
         font-size: 14px;
-        color: rgb(123, 123, 123);
+        color: rgb(71, 71, 71);
+        font-weight: bolder;
     }
     .x-label{
         position: absolute;
         width: 4em;
         left: -2em;
-        bottom: -3em;
+        bottom: -2.4em;
         font-family: sans-serif;
-        font-size: 10px;
-        color: rgb(123, 123, 123);
+        font-size: 12px;
+        font-weight: bold;
+        color: rgb(71, 71, 71);
         text-align: center;
     }
     path.data{
         stroke: rgba(33, 226, 62, 0.8);
         stroke-linejoin: round;
         stroke-linecap: round;
-        stroke-width: 1.5px;
+        stroke-width: 1.9px;
         fill: none;
     }
-
-
-
 
     .annotation {
 		position: absolute;

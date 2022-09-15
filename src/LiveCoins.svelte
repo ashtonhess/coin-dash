@@ -292,6 +292,6 @@
         grid-template-columns: repeat(1, 1fr); 
         grid-template-rows: repeat(4, 1fr); 
         grid-column-gap: 5em;
-        grid-row-gap: 70px; 
+        grid-row-gap: 75px; 
     }
 </style>

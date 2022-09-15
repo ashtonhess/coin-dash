@@ -5,10 +5,13 @@
 
 <main>
 	<!-- <div class='chart-grid twoXone'> -->
-	<div class='chart-grid twoXone'>
-		<LiveCoins/>
-		<LiveStocks/>
+	<div class='maindiv'>
+		<div class='chart-grid twoXone'>
+			<LiveCoins/>
+			<LiveStocks/>
+		</div>
 	</div>
+	
 	
 </main>
 
@@ -17,7 +20,7 @@
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 
         grid-template-rows: repeat(1, 1fr); 
-        grid-column-gap: 5em;
+        grid-column-gap: 2em;
 		padding-left: 4em;
 		padding-right: 4em;
         /* grid-row-gap: 10px;  */
@@ -28,6 +31,7 @@
 	padding-left: 3em;
 	
 	}
+
 
 </style>
 
