@@ -56,7 +56,7 @@
     }
 
     .chart{
-        height: 100px;
+        height: 90%;
         width: 90%;
         padding: 2em 2em 2em 2em;
         margin: 0 0 36px 0;
@@ -95,7 +95,7 @@
         stroke: rgba(33, 226, 62, 0.8);
         stroke-linejoin: round;
         stroke-linecap: round;
-        stroke-width: 1px;
+        stroke-width: 1.5px;
         fill: none;
     }
 

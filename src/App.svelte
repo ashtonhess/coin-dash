@@ -1,12 +1,13 @@
 <script>
 	import LiveCoins from "./LiveCoins.svelte";
+	import LiveStocks from "./LiveStocks.svelte"
 </script>
 
 <main>
 	<!-- <div class='chart-grid twoXone'> -->
 	<div class='chart-grid twoXone'>
 		<LiveCoins/>
-		<LiveCoins/>
+		<LiveStocks/>
 	</div>
 	
 </main>
@@ -18,6 +19,7 @@
         grid-template-rows: repeat(1, 1fr); 
         grid-column-gap: 5em;
 		padding-left: 4em;
+		padding-right: 4em;
         /* grid-row-gap: 10px;  */
 		width: 100%;
 		height: 100%;
