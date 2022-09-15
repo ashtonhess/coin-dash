@@ -34,9 +34,9 @@
         <Pancake.Point x={closest.x} y={closest.y}>
             <span class="annotation-point"></span>
             <div class="annotation" style="transform: translate(-{100 * ((closest.x - x1) / (x2 - x1))}%,0)">
-                <strong>${closest.y.toLocaleString()}</strong>
+                <strong class='closestY'>${closest.y.toLocaleString()}</strong>
                 <!-- <span>{closest.x}: {closest.y}</span> -->
-                <span>{String(new Date(closest.x).toLocaleTimeString())}</span>
+                <span class='closestDate'>{String(new Date(closest.x).toLocaleTimeString())}</span>
             </div>
         </Pancake.Point>
         {/if}
@@ -55,7 +55,8 @@
         /* display: block; */
         font-size:xx-large;
         font-weight: bolder;
-        color:rgb(0, 0, 0)
+        /* color:rgb(0, 0, 0) */
+        color: white;
     }
 
     .chart{
@@ -82,7 +83,8 @@
         bottom: 2px;
         font-family: sans-serif;
         font-size: 14px;
-        color: rgb(71, 71, 71);
+        /* color: rgb(71, 71, 71); */
+        color: white;
         font-weight: bolder;
     }
     .x-label{
@@ -93,14 +95,15 @@
         font-family: sans-serif;
         font-size: 12px;
         font-weight: bold;
-        color: rgb(71, 71, 71);
+        /* color: rgb(71, 71, 71); */
+        color: white;
         text-align: center;
     }
     path.data{
         stroke: rgba(33, 226, 62, 0.8);
         stroke-linejoin: round;
         stroke-linecap: round;
-        stroke-width: 1.9px;
+        stroke-width: 3.5px;
         fill: none;
     }
 
@@ -109,7 +112,8 @@
 		white-space: nowrap;
 		bottom: 1em;
 		line-height: 1.2;
-		background-color: rgba(255,255,255,0.3);
+		/* background-color: rgba(255,255,255,0.3); */
+        background-color: rgb(255, 255, 255,.3);
 		padding: 0.2em 0.4em;
 		border-radius: 2px;
 	}
@@ -117,7 +121,8 @@
 		position: absolute;
 		width: 5px;
 		height: 5px;
-		background-color: #000000;
+		/* background-color: #000000; */
+        background-color: white;
 		border-radius: 50%;
 		transform: translate(-50%,-50%);
 	}
@@ -129,4 +134,10 @@
 		display: block;
 		font-size: 10px;
 	}
+    .closestY{
+        color: white;
+    }
+    .closestDate{
+        color: white;
+    }
 </style>

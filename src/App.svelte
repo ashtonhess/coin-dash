@@ -2,18 +2,20 @@
 	import LiveCoins from "./LiveCoins.svelte";
 	import LiveStocks from "./LiveStocks.svelte"
 </script>
-
-<main>
-	<!-- <div class='chart-grid twoXone'> -->
-	<div class='maindiv'>
-		<div class='chart-grid twoXone'>
-			<LiveCoins/>
-			<LiveStocks/>
+<body class='body'>
+	<main class='main'>
+		<!-- <div class='chart-grid twoXone'> -->
+		<div class='maindiv'>
+			<div class='chart-grid twoXone'>
+				<LiveCoins/>
+				<LiveStocks/>
+			</div>
 		</div>
-	</div>
-	
-	
-</main>
+		
+		
+	</main>
+</body>
+
 
 <style>
 .chart-grid.twoXone { 
@@ -31,8 +33,23 @@
 	padding-left: 3em;
 	
 	}
-
-
+	/* .main{
+		background-color: black;
+	} */
+	.body{
+		background-color: black;
+		width: 100vw;
+		height: 100vw;
+		/* margin: -10px -10px -10px -10px;
+		padding: -10px -10px -10px -10px; */
+	}
+	/* body{
+		background-color: black;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		height: 100%;
+	} */
 </style>
 
 
