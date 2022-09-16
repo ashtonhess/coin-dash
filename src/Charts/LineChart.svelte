@@ -11,12 +11,21 @@
 
     export let data = [];
 
+    export let current_price = "(No live data.)";
+    
+    // let maxVal = Math.max(...data.map(o => o.y))
+    // console.log(maxVal);
+    
+
     let closest;
 
 </script>
 
 <div class='chart'>
-    <h3 class='header'>{header}</h3>
+    <div class='headerdiv'>
+        <h3 class='header'>{header}: ${current_price.toLocaleString()}</h3>
+        <!-- <h3 class='header2'>${data[data.length-1]}</h3> -->
+    </div>
     <Pancake.Chart {x1} {x2} {y1} {y2}>
         <Pancake.Grid horizontal count = {4} let:value>
             <div class='grid-line horizontal'><span>${value.toLocaleString()}</span></div>

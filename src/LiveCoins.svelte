@@ -9,6 +9,7 @@
     let btc_y1 = +Infinity;
     let btc_y2 = -Infinity;
     let btc_alldata = [];
+    let btc_current_price;
 
     let eth_socket = new WebSocket('wss://stream.binance.com:9443/ws/ethusdt@trade');
     let eth_x1 = +Infinity;
@@ -16,6 +17,7 @@
     let eth_y1 = +Infinity;
     let eth_y2 = -Infinity;
     let eth_alldata = [];
+    let eth_current_price;
 
     let ada_socket = new WebSocket('wss://stream.binance.com:9443/ws/adausdt@trade');
     let ada_x1 = +Infinity;
@@ -23,6 +25,7 @@
     let ada_y1 = +Infinity;
     let ada_y2 = -Infinity;
     let ada_alldata = [];
+    let ada_current_price;
 
     // let doge_socket = new WebSocket('wss://stream.binance.com:9443/ws/dogeusdt@trade');
     // let doge_x1 = +Infinity;
@@ -37,6 +40,7 @@
     let avax_y1 = +Infinity;
     let avax_y2 = -Infinity;
     let avax_alldata = [];
+    let avax_current_price;
 
     // let sol_socket = new WebSocket('wss://stream.binance.com:9443/ws/solusdt@trade');
     // let sol_x1 = +Infinity;
@@ -107,10 +111,13 @@
                 if (btc_data_dict.y>btc_y2) btc_y2 = btc_data_dict.y;
                 if (btc_data_dict.y<btc_y1) btc_y1 = btc_data_dict.y;
                 // if (btc_x2-btc_x1>60000) btc_x1 = btc_x2-60000
-                if (btc_x2-btc_x1>86400000) btc_x1 = btc_x2-86400000
+                if (btc_x2-btc_x1>86400000) btc_x1 = btc_x2-86400000;
+                
+                //store the last price received.
+                btc_current_price=btc_data_dict.y;
+
                 btc_alldata.push(btc_data_dict);
                 btc_alldata=[...btc_alldata.filter(data => data.x > btc_x1)]
-                // btc_every_other_tracker=false;
                 btc_every_other_tracker+=1;
             }else{
                 btc_every_other_tracker+=1;
@@ -124,7 +131,9 @@
             if (btc_data_dict.y>btc_y2) btc_y2 = btc_data_dict.y;
             if (btc_data_dict.y<btc_y1) btc_y1 = btc_data_dict.y;
             // if (btc_x2-btc_x1>60000) btc_x1 = btc_x2-60000
-            if (btc_x2-btc_x1>86400000) btc_x1 = btc_x2-86400000
+            if (btc_x2-btc_x1>86400000) btc_x1 = btc_x2-86400000;
+            //store the last price received.
+            btc_current_price=btc_data_dict.x;
             btc_alldata.push(btc_data_dict);
             btc_alldata=[...btc_alldata.filter(data => data.x > btc_x1)]
             // console.log(btc_alldata[btc_alldata.length-1]);
@@ -145,7 +154,9 @@
                 if (eth_data_dict.y>eth_y2) eth_y2 = eth_data_dict.y;
                 if (eth_data_dict.y<eth_y1) eth_y1 = eth_data_dict.y;
                 // if (eth_x2-eth_x1>60000) eth_x1 = eth_x2-60000
-                if (eth_x2-eth_x1>86400000) eth_x1 = eth_x2-86400000
+                if (eth_x2-eth_x1>86400000) eth_x1 = eth_x2-86400000;
+                //store the last price received.
+                eth_current_price=eth_data_dict.y;
                 eth_alldata.push(eth_data_dict);
                 eth_alldata=[...eth_alldata.filter(data => data.x > eth_x1)]
                 // eth_every_other_tracker=false;
@@ -162,7 +173,9 @@
             if (eth_data_dict.y>eth_y2) eth_y2 = eth_data_dict.y;
             if (eth_data_dict.y<eth_y1) eth_y1 = eth_data_dict.y;
             // if (eth_x2-eth_x1>60000) eth_x1 = eth_x2-60000
-            if (eth_x2-eth_x1>86400000) eth_x1 = eth_x2-86400000
+            if (eth_x2-eth_x1>86400000) eth_x1 = eth_x2-86400000;
+            //store the last price received.
+            eth_current_price=eth_data_dict.y;
             eth_alldata.push(eth_data_dict);
             eth_alldata=[...eth_alldata.filter(data => data.x > eth_x1)]
             // console.log(eth_alldata[eth_alldata.length-1]);
@@ -192,9 +205,11 @@
         if (ada_data_dict.y>ada_y2) ada_y2 = ada_data_dict.y;
         if (ada_data_dict.y<ada_y1) ada_y1 = ada_data_dict.y;
         // if (btc_x2-btc_x1>60000) btc_x1 = btc_x2-60000
-        if (ada_x2-ada_x1>86400000) ada_x1 = ada_x2-86400000
+        if (ada_x2-ada_x1>86400000) ada_x1 = ada_x2-86400000;
+        //store the last price received.
+        ada_current_price=ada_data_dict.y;
         ada_alldata.push(ada_data_dict);
-        ada_alldata=[...ada_alldata.filter(data => data.x > btc_x1)]
+        ada_alldata=[...ada_alldata.filter(data => data.x > ada_x1)]
         // console.log(ada_alldata[ada_alldata.length-1]);
     }
     // doge_socket.onmessage = function (event) {
@@ -220,7 +235,9 @@
         if (avax_data_dict.y>avax_y2) avax_y2 = avax_data_dict.y;
         if (avax_data_dict.y<avax_y1) avax_y1 = avax_data_dict.y;
         // if (avax_x2-avax_x1>60000) avax_x1 = avax_x2-60000
-        if (avax_x2-avax_x1>86400000) avax_x1 = avax_x2-86400000
+        if (avax_x2-avax_x1>86400000) avax_x1 = avax_x2-86400000;
+        //store the last price received.
+        avax_current_price=avax_data_dict.y;
         avax_alldata.push(avax_data_dict);
         avax_alldata=[...avax_alldata.filter(data => data.x > avax_x1)]
         // console.log(avax_alldata[avax_alldata.length-1]);
@@ -274,11 +291,11 @@
 <!-- <h1>Live Coins</h1> -->
 
 <div class='chart-grid oneXfour'>
-    <LineChart bind:data={btc_alldata} bind:x1={btc_x1} bind:x2={btc_x2} bind:y1={btc_y1} bind:y2={btc_y2} bind:header={coins[0]}/>
-    <LineChart bind:data={eth_alldata} bind:x1={eth_x1} bind:x2={eth_x2} bind:y1={eth_y1} bind:y2={eth_y2} bind:header={coins[1]}/>
-    <LineChart bind:data={ada_alldata} bind:x1={ada_x1} bind:x2={ada_x2} bind:y1={ada_y1} bind:y2={ada_y2} bind:header={coins[2]}/>
+    <LineChart bind:data={btc_alldata} bind:x1={btc_x1} bind:x2={btc_x2} bind:y1={btc_y1} bind:y2={btc_y2} bind:header={coins[0]} bind:current_price={btc_current_price}/>
+    <LineChart bind:data={eth_alldata} bind:x1={eth_x1} bind:x2={eth_x2} bind:y1={eth_y1} bind:y2={eth_y2} bind:header={coins[1]} bind:current_price={eth_current_price}/>
+    <LineChart bind:data={ada_alldata} bind:x1={ada_x1} bind:x2={ada_x2} bind:y1={ada_y1} bind:y2={ada_y2} bind:header={coins[2]} bind:current_price={ada_current_price}/>
     <!-- <LineChart bind:data={doge_alldata} bind:x1={doge_x1} bind:x2={doge_x2} bind:y1={doge_y1} bind:y2={doge_y2} bind:header={coins[3]}/> -->
-    <LineChart bind:data={avax_alldata} bind:x1={avax_x1} bind:x2={avax_x2} bind:y1={avax_y1} bind:y2={avax_y2} bind:header={coins[4]}/>
+    <LineChart bind:data={avax_alldata} bind:x1={avax_x1} bind:x2={avax_x2} bind:y1={avax_y1} bind:y2={avax_y2} bind:header={coins[4]} bind:current_price={avax_current_price}/>
     <!-- <LineChart bind:data={sol_alldata} bind:x1={sol_x1} bind:x2={sol_x2} bind:y1={sol_y1} bind:y2={sol_y2} bind:header={coins[5]}/> -->
     <!-- <LineChart bind:data={bnb_alldata} bind:x1={bnb_x1} bind:x2={bnb_x2} bind:y1={bnb_y1} bind:y2={bnb_y2} bind:header={coins[6]}/> -->
     <!-- <LineChart bind:data={matic_alldata} bind:x1={matic_x1} bind:x2={matic_x2} bind:y1={matic_y1} bind:y2={matic_y2} bind:header={coins[7]}/> -->
